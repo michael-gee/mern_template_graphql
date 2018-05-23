@@ -1,0 +1,38 @@
+import React, { Component } from 'react';
+
+class UserProfile extends Component {
+  renderUserProfile() {
+    if(this.props.userData === undefined) {
+      return <div>Loading...</div>
+    } else {
+      return (
+        <div>
+          <ul>
+            <li>{this.props.userData.displayName}</li>
+            <li>{this.props.userData.email}</li>
+            <li><img src={this.props.userData.photoURL} alt="Current User" /></li>
+          </ul>
+        </div>
+      );
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Profile Page</h1>
+
+        {this.renderUserProfile()}
+
+        <button onClick={() => this.props.onUserAuthentication(false, this.props.history)}>Log Out</button>
+
+        <br /><br />
+
+        <button onClick={this.props.getCurrentUser}>Get Current User</button>
+      </div>
+    );
+  }
+}
+
+
+export default UserProfile;
